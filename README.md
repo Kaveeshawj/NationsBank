@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 J2EE-Example-Project
 
 ## 📝 Project Overview
@@ -186,3 +187,7 @@ Chamika Gayashan
 Undergraduate Software Engineer | Sri Lanka  
 Linkedin: @chamikathereal  
 Current date: Saturday, July 05, 2025, 12:48 AM +0530
+=======
+# NationsBank
+A Java EE-based Banking System implementing EJB, Servlets, and JSP with features like real-time fund transfers, scheduled transactions using TimerService, and automated monthly transaction reports.
+>>>>>>> c5baace6d79e921752eef4de871f297370ef7c58
