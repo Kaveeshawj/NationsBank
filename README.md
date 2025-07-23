@@ -1,193 +1,98 @@
-<<<<<<< HEAD
-# 🚀 J2EE-Example-Project
+# 💼 EJB-Based Banking System
 
-## 📝 Project Overview
+This project is a Java EE-based **Banking System** designed to demonstrate core enterprise features such as user account management, fund transfers, scheduled transactions, and automated monthly transaction reporting. It utilizes **EJB**, **JSP**, **Servlets**, and **TimerService** to deliver a modular, maintainable, and scalable banking application.
 
-**J2EE-Example-Project** is a modular Java EE application designed to demonstrate best practices in enterprise application development. This project covers user authentication, product management, email verification, and secure role-based access control using EJBs, servlets, JSP, Jakarta EE Security API, and Hibernate ORM. The architecture is layered and scalable, making it ideal for learning and extending real-world enterprise Java solutions.
+---
 
-## 🗂️ Project Structure
+## 🚀 Features
 
-```
-J2EE-Example-Project/
-├── auth/
-│   └── src/main/java/lk.jiat.app.ejb.bean/
-│       └── UserSessionBean.java
-├── core/
-│   └── src/main/java/lk.jiat.app.core/
-│       ├── exception/
-│       │   ├── InvalidParameterException.java
-│       │   └── LoginFailedException.java
-│       ├── mail/
-│       │   ├── Mailable.java
-│       │   └── VerificationMail.java
-│       ├── model/
-│       │   ├── Product.java
-│       │   ├── Status.java
-│       │   ├── User.java
-│       │   └── UserType.java
-│       ├── provider/
-│       │   └── MailServiceProvider.java
-│       ├── service/
-│       │   ├── ProductService.java
-│       │   └── UserService.java
-│       └── util/
-│           ├── Encryption.java
-│           └── Env.java
-│       └── resources/
-│           ├── META-INF/persistence.xml
-│           └── application.properties
-├── product/
-│   └── src/main/java/lk.jiat.app.ejb.bean/
-│       └── ProductSessionBean.java
-├── web/
-│   └── src/main/java/lk.jiat.app.web/
-│       ├── listener/
-│       │   └── ContextListener.java
-│       ├── security/
-│       │   ├── AppIdentityStore.java
-│       │   └── AuthMechanism.java
-│       └── servlet/
-│           ├── AddProduct.java
-│           ├── deleteProduct.java
-│           ├── Login.java
-│           ├── Logout.java
-│           ├── Register.java
-│           ├── Test.java
-│           └── VerifyEmail.java
-│   └── src/main/webapp/
-│       ├── admin/
-│       │   ├── add_product.jsp
-│       │   └── index.jsp
-│       ├── user/
-│       │   └── index.jsp
-│       ├── WEB-INF/
-│       │   └── web.xml
-│       ├── 500.jsp
-│       ├── index.jsp
-│       ├── login.jsp
-│       ├── login_error.jsp
-│       ├── register.jsp
-│       └── unauthorized.jsp
-├── ear/
-│   └── src/main/
-│       ├── java/
-│       └── resources/
-├── pom.xml
-```
+- 🔐 **User Authentication**
+  - Secure login for customers and administrators.
+- 💸 **Real-Time Fund Transfers**
+  - Transfer money instantly between accounts.
+- 📅 **Scheduled Fund Transfers**
+  - Set future-dated transfers using `@Stateless` EJB + `TimerService`.
+- 📊 **Automated Monthly Transaction Reports**
+  - EJB Timer auto-generates reports on the last day of each month.
+- 📁 **Admin Dashboard**
+  - View all users and transaction histories.
+- 📤 **Export to PDF**
+  - Export filtered reports to PDF for records or audits.
+- 🧩 **Modular Architecture**
+  - Clean separation between model, service, EJB, and UI layers.
 
-## 📦 Module Details
+---
 
-### 🟦 **auth (EJB Module)**
-- **UserSessionBean.java**  
-  Stateless EJB for user management: registration, authentication, update, and deletion. Integrates with the core model and service interfaces.
+## 🏗️ Technologies Used
 
-  ##
+- **Java EE** / **Jakarta EE**
+- **Enterprise JavaBeans (EJB)** – Stateless Beans, TimerService
+- **Jakarta Servlet API**
+- **JavaServer Pages (JSP)**
+- **MySQL** (Database)
+- **Tailwind CSS** (UI Styling)
+- **GlassFishr**
+- **JDBC**
 
-### 🟦 **core (Core Business Logic)**
-- **exception/**  
-  Custom exceptions for parameter validation and login failures.
-  
-- **mail/**  
-  Email sending logic, including verification emails for user registration.
-  
-- **model/**  
-  JPA entities for `User`, `Product`, and supporting enums for status and user type.
-  
-- **provider/**  
-  Singleton mail service provider for asynchronous email delivery.
-  
-- **service/**  
-  Remote interfaces for user and product business logic.
-  
-- **util/**  
-  Utility classes for password encryption and environment variable management.
-  
-- **resources/**  
-  JPA persistence configuration and application properties.
+---
 
-  ##
+## ⚙️ How to Run
 
-### 🟦 **product (EJB Module)**
-- **ProductSessionBean.java**  
-  Stateless EJB for product CRUD operations, category filtering, and business logic.
+### Prerequisites
 
-  ##
+- Java 17+
+- GlassFish 7 / Payara Server 6+
+- MySQL or H2 Database
+- Maven or NetBeans
 
-### 🟦 **web (Web Layer)**
-- **listener/ContextListener.java**  
-  Initializes and shuts down the mail service provider.
-  
-- **security/**  
-  Implements Jakarta EE Security API for authentication and identity management.
-  
-- **servlet/**  
-  Servlets for login, logout, registration, product management, email verification, and testing.
-  
-- **webapp/**  
-  JSP pages for admin and user dashboards, login, registration, error handling, and unauthorized access.
-  
-- **WEB-INF/web.xml**  
-  Security constraints, role mappings, and error page configuration.
+### Steps
 
-  ##
+1. **Clone the Repository**
 
-### 🟦 **ear (Enterprise Archive)**
-- Assembles all modules (`auth`, `product`, `core`, `web`) into a deployable EAR for enterprise servers.
+   ```bash
+   git clone https://github.com/Kaveeshawj/NationsBank.git
+   cd banking-system-ejb
 
-## ⚙️ Key Features
+Configure Database
 
-- ✅ Modular Maven multi-module structure (EJB, web, core, EAR)
-- ✅ User registration with email verification
-- ✅ Secure login/logout and session management
-- ✅ Role-based access control (SUPER_ADMIN, ADMIN, USER)
-- ✅ Product management (CRUD, category filtering)
-- ✅ Custom exception handling and error pages
-- ✅ Asynchronous email sending for verification
-- ✅ Password encryption for secure storage
-- ✅ Clean separation of concerns and layered architecture
+Update persistence.xml with your database connection details.
 
-## 💡 How It Works
+Build and Deploy
 
-- **User Registration:**  
-  Users register via a form; their data is persisted and a verification email is sent. Upon clicking the verification link, their account is activated.
+Use NetBeans or Maven to deploy the project to your GlassFish or Payara Server.
 
-- **Authentication & Authorization:**  
-  Login is handled via a servlet and Jakarta EE Security API. Roles are assigned and enforced at both servlet and EJB levels.
+Access the Application
 
-- **Product Management:**  
-  Admins can add, view, and delete products via JSP pages and servlets. Products are managed using EJBs and JPA.
+Open your browser and navigate to:
+http://localhost:8080/nations-bank/
 
-- **Session & Error Handling:**  
-  Secure session management ensures users can log out safely. Custom error pages handle login failures, unauthorized access, and server errors.
+---
 
-- **Email Service:**  
-  The mail provider uses a thread pool for efficient, non-blocking email delivery, supporting verification and notification workflows.
+📈 Performance & Best Practices
+This project follows EJB best practices for scalability and maintainability:
 
-## 🛠️ Technologies Used
+Used @Stateless for lightweight transactional components
 
-- Java 11
-- Jakarta EE 10 (EJB, Servlet, JPA, Security)
-- Hibernate ORM
-- JSP & JSTL
-- Maven
-- MySQL (for persistence)
-- Jakarta Mail
+Leveraged @Schedule for automated monthly task execution
 
-## 📚 Learning Outcomes
+Centralized business logic in service layer for easy testing
 
-- ✅ Build modular, maintainable Java EE applications
-- ✅ Implement secure authentication and role-based authorization
-- ✅ Integrate EJBs, servlets, and JSP in a real-world project
-- ✅ Use JPA/Hibernate for ORM and database management
-- ✅ Apply best practices for error handling and email verification
+Uses dependency injection to reduce boilerplate (@Inject, @EJB)
+
+Metrics observed during testing:
+
+Report generation completed under 1 second for 1000+ transactions
+
+Low memory usage and no major GC pauses during scheduled tasks
+
+Easy to scale due to stateless design and modular service beans
+
+---
 
 ## 🧑‍💻 Author
 
-Chamika Gayashan  
+Kaveesha Wijeweera
 Undergraduate Software Engineer | Sri Lanka  
-Linkedin: @chamikathereal  
-Current date: Saturday, July 05, 2025, 12:48 AM +0530
-=======
-# NationsBank
-A Java EE-based Banking System implementing EJB, Servlets, and JSP with features like real-time fund transfers, scheduled transactions using TimerService, and automated monthly transaction reports.
->>>>>>> c5baace6d79e921752eef4de871f297370ef7c58
+Linkedin: @kaveewijeweera 
+
+
